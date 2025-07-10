@@ -21,6 +21,26 @@ where
     }
 }
 
+#[cfg(feature = "crossbeam-channel")]
+impl EventHandler for crossbeam_channel::Sender<Event> {
+    fn handle_event(&mut self, event: Event) -> bool {
+        self.send(event).is_ok()
+    }
+}
+
+#[cfg(feature = "flume")]
+impl EventHandler for flume::Sender<Event> {
+    fn handle_event(&mut self, event: Event) -> bool {
+        self.send(event).is_ok()
+    }
+}
+
+impl EventHandler for std::sync::mpsc::Sender<Event> {
+    fn handle_event(&mut self, event: Event) -> bool {
+        self.send(event).is_ok()
+    }
+}
+
 pub struct EventSender {
     handler: RefCell<Box<dyn EventHandler>>,
     main_loop_weak: WeakMainLoop,

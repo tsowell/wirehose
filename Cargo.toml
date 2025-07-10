@@ -14,6 +14,8 @@ include = ["src/*", "Cargo.toml", "LICENSE*", "README.md"]
 
 [dependencies]
 anyhow = "1.0.98"
+crossbeam-channel = { version = "0.5.15", optional = true }
+flume = { version = "0.11.1", optional = true }
 libspa = "0.8.0"
 libspa-sys = "0.8.0"
 nix = { version = "0.29.0", features = ["event"] }
