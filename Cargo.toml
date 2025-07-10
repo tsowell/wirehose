@@ -1,0 +1,25 @@
+[package]
+name = "wirehose"
+version = "0.1.0"
+edition = "2021"
+authors = ["Thomas Sowell <tom@ldtlb.com>"]
+description = "A channel-based API for PipeWire"
+readme = "README.md"
+repository = "https://github.com/tsowell/wirehose"
+license = "MIT OR Apache-2.0"
+categories = ["multimedia"]
+keywords = ["pipewire", "audio", "api"]
+rust-version = "1.74.1"
+include = ["src/*", "Cargo.toml", "LICENSE*", "README.md"]
+
+[dependencies]
+anyhow = "1.0.98"
+libspa = "0.8.0"
+libspa-sys = "0.8.0"
+nix = { version = "0.29.0", features = ["event"] }
+paste = "1.0.15"
+pipewire = { version = "0.8.0", features = ["v0_3_44"] }
+scopeguard = "1.2.0"
+
+[features]
+test-utils = []

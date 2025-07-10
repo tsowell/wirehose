@@ -2,7 +2,7 @@ use std::cell::RefCell;
 
 use pipewire::main_loop::WeakMainLoop;
 
-use crate::wirehose::{Event, StateEvent};
+use crate::{Event, StateEvent};
 
 /// Trait for handling [`Event`]s.
 ///

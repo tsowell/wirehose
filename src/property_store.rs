@@ -5,7 +5,7 @@ use libspa::utils::dict::DictRef;
 
 use anyhow::{anyhow, Result};
 
-use crate::wirehose::ObjectId;
+use crate::ObjectId;
 
 #[derive(Debug, Clone)]
 enum PropertyValue {
@@ -157,7 +157,7 @@ macro_rules! define_properties {
                         .and_then(|entry| entry.get_value())
                 }
 
-                #[cfg(test)]
+                #[cfg(feature = "test-utils")]
                 paste::paste! {
                     pub fn [<set_ $name>](&mut self, value: $type) {
                         self.properties.insert(

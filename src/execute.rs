@@ -1,9 +1,9 @@
 use std::rc::Rc;
 
-use crate::wirehose::event_sender::EventSender;
-use crate::wirehose::proxy_registry::ProxyRegistry;
-use crate::wirehose::stream_registry::StreamRegistry;
-use crate::wirehose::{stream, Command};
+use crate::event_sender::EventSender;
+use crate::proxy_registry::ProxyRegistry;
+use crate::stream_registry::StreamRegistry;
+use crate::{stream, Command};
 
 use pipewire::{core::Core, device::Device, node::Node};
 

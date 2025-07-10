@@ -1,6 +1,6 @@
 //! PipeWire controls which can be executed by wirehose.
 
-use crate::wirehose::ObjectId;
+use crate::ObjectId;
 
 #[derive(Debug)]
 pub enum Command {

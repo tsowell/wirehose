@@ -1,6 +1,6 @@
 use pipewire::link::LinkInfoRef;
 
-use crate::wirehose::{ObjectId, PropertyStore};
+use crate::{ObjectId, PropertyStore};
 
 #[derive(Debug)]
 pub enum Event {

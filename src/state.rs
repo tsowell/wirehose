@@ -2,7 +2,7 @@
 
 use std::collections::{HashMap, HashSet};
 
-use crate::wirehose::{
+use crate::{
     media_class, Command, CommandSender, ObjectId, PropertyStore, StateEvent,
 };
 
@@ -142,14 +142,12 @@ pub struct Metadata {
 }
 
 #[derive(Default)]
-/// PipeWire state, maintained from [`StateEvent`]s from the
-/// [`wirehose`](`crate::wirehose`) module.
+/// PipeWire state, maintained from [`StateEvent`]s.
 ///
 /// This is primarily for maintaining a representation of the PipeWire state,
 /// but [`Self::update()`] also handles capture management for starting
-/// and stopping streaming because the [`wirehose`](`crate::wirehose`)
-/// callbacks don't individually have enough information to determine when that
-/// should happen.
+/// and stopping streaming because the PipeWire callbacks don't individually
+/// have enough information to determine when that should happen.
 pub struct State {
     pub clients: HashMap<ObjectId, Client>,
     pub nodes: HashMap<ObjectId, Node>,

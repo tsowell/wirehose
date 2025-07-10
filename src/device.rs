@@ -12,10 +12,8 @@ use libspa::{
     utils::dict::DictRef,
 };
 
-use crate::wirehose::event_sender::EventSender;
-use crate::wirehose::{
-    deserialize::deserialize, ObjectId, PropertyStore, StateEvent,
-};
+use crate::event_sender::EventSender;
+use crate::{deserialize::deserialize, ObjectId, PropertyStore, StateEvent};
 
 pub fn monitor_device(
     registry: &Registry,

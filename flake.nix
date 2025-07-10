@@ -1,0 +1,42 @@
+{
+  description = "Simple TUI audio mixer for PipeWire";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default-linux";
+  };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      systems,
+      ...
+    }:
+    let
+      eachSystem =
+        callback:
+        nixpkgs.lib.genAttrs (import systems) (
+          system: callback nixpkgs.legacyPackages.${system}
+        );
+    in
+    {
+      devShells = eachSystem (pkgs: {
+        default =
+          with pkgs;
+          mkShell {
+            packages = [
+              rustc
+              cargo
+              rustfmt
+              nixfmt-rfc-style
+              clippy
+              pkg-config
+              rustPlatform.bindgenHook
+
+              pipewire
+            ];
+          };
+      });
+    };
+}
