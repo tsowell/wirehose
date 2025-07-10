@@ -3,7 +3,7 @@ use std::rc::Rc;
 use crate::event_sender::EventSender;
 use crate::proxy_registry::ProxyRegistry;
 use crate::stream_registry::StreamRegistry;
-use crate::{stream, Command};
+use crate::{command::Command, stream};
 
 use pipewire::{core::Core, device::Device, node::Node};
 

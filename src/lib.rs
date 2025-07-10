@@ -18,7 +18,7 @@ mod stream;
 mod stream_registry;
 mod sync_registry;
 
-pub use command::{Command, CommandSender};
+pub use command::CommandSender;
 pub use event::{Event, StateEvent};
 pub use event_sender::EventHandler;
 pub use object_id::ObjectId;
@@ -27,13 +27,12 @@ pub use session::Session;
 
 #[cfg(test)]
 mod mock {
-    use crate::{Command, CommandSender, ObjectId};
+    use crate::{CommandSender, ObjectId};
 
     #[derive(Default)]
     pub struct WirehoseHandle {}
 
     impl CommandSender for WirehoseHandle {
-        fn send(&self, _command: Command) {}
         fn node_capture_start(
             &self,
             _obj_id: ObjectId,

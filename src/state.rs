@@ -3,7 +3,8 @@
 use std::collections::{HashMap, HashSet};
 
 use crate::{
-    media_class, Command, CommandSender, ObjectId, PropertyStore, StateEvent,
+    command::Command, media_class, CommandSender, ObjectId, PropertyStore,
+    StateEvent,
 };
 
 #[derive(Debug)]
@@ -346,13 +347,21 @@ impl State {
         if let Some(capturing) = &mut self.capturing {
             if let Some(command) = command {
                 match command {
-                    Command::NodeCaptureStart(node_id, _, _) => {
-                        capturing.insert(node_id);
-                        wirehose.send(command);
+                    Command::NodeCaptureStart(
+                        obj_id,
+                        object_serial,
+                        capture_sink,
+                    ) => {
+                        capturing.insert(obj_id);
+                        wirehose.node_capture_start(
+                            obj_id,
+                            object_serial,
+                            capture_sink,
+                        );
                     }
-                    Command::NodeCaptureStop(node_id) => {
-                        capturing.remove(&node_id);
-                        wirehose.send(command);
+                    Command::NodeCaptureStop(obj_id) => {
+                        capturing.remove(&obj_id);
+                        wirehose.node_capture_stop(obj_id);
                     }
                     _ => {}
                 }
